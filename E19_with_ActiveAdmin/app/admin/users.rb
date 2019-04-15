@@ -12,4 +12,43 @@ ActiveAdmin.register User do
 #   permitted
 # end
 
+permit_params :name, :last_name, :email, :password
+
+  index do
+    column :id
+    column :name
+    column :last_name
+    column :email
+    column :created_at
+    column 'Member since' do |user|
+      time_ago_in_words(user.created_at)
+    end
+    actions
+  end
+
+  form do |f|
+    inputs "New User" do
+      input :name
+      input :last_name
+      input :email
+      input :password
+    end
+    actions
+  end
+
+  controller do
+    def update
+      if (params[:user][:password].blank? && params[:user][:password_confirmation].blank?)
+        params[:user].delete("password")
+        params[:user].delete("password_confirmation")
+      end
+      super
+    end
+  end
+
+  filter :name
+  filter :last_name
+  filter :email
+  filter :created_at
+  
 end
