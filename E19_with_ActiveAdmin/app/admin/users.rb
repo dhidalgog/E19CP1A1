@@ -19,7 +19,7 @@ permit_params :name, :last_name, :email, :password
     column :name
     column :last_name
     column :email
-    column :created_at
+    column :projects
     column 'Member since' do |user|
       time_ago_in_words(user.created_at)
     end
@@ -49,6 +49,5 @@ permit_params :name, :last_name, :email, :password
   filter :name
   filter :last_name
   filter :email
-  filter :created_at
   
 end
