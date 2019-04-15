@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PBase</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= render 'layouts/navbar' %>
+
+    <div class="alerts">
+      <%= render 'layouts/alerts' %>
+    </div>
+
+    <div class="content">
+      <div class="<%= params[:controller] %> <%= params[:action] %>">
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>
